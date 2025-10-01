@@ -1,4 +1,5 @@
 <!doctype html>
+
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -179,11 +180,11 @@ header{ text-align:center; padding:10px 0 18px; margin-bottom:8px; background:tr
 .container{ max-width:var(--max-width); margin:0 auto; padding:0; position:relative; z-index:9 }
 
 /* About / Photo */
-.about{ background:transparent; border-radius:var(--radius-lg); padding: 18px 6px 6px; border:none; text-align:left; margin-bottom:var(--gap-md) }
+.about{ background:transparent; border-radius:var(--radius-lg); padding: 32px 12px 12px; border:none; text-align:left; margin-bottom:var(--gap-md) }
 .about h2{ font-size:var(--heading-size); font-weight:700; color:#000; margin-bottom:12px; }
 .about p.desc{ color:#000; line-height:1.8; margin-bottom:16px; font-size:15px }
 
-.photo-wrap { margin:18px auto 20px; border-radius:12px; overflow:hidden; max-width:720px; display:flex; justify-content:center; align-items:center; }
+.photo-wrap { margin:30px auto 20px; border-radius:12px; overflow:hidden; max-width:1200px; display:flex; justify-content:center; align-items:center; }
 .photo-wrap img { display:block; max-width:100%; height:auto; margin:0 auto; transition: transform .6s var(--ease) }
 
 /* Gallery */
@@ -319,13 +320,16 @@ footer{ padding:18px 10px; color:var(--muted); text-align:center; font-size:14px
    - one image per scroll (gallery 1 column)
    - smaller headings/images/video/ending, but title glow preserved
    - more background visible on both sides
-   - PHONE-SPECIFIC ADJUSTMENTS:
-       * smaller toggle & ambience controls
-       * reveal-on-hover/drag effect (slow reveal when moving/hovering)
-       * hero photo width same as other gallery pics
-       * smaller preloader strawberry emoji
-       * slight font-size adjustments for paragraph
    ========================================================================= */
+
+
+/* 📱 Phone version only */
+@media screen and (max-width: 768px) {
+  img[src="hamna 1.jpg"] {
+    width: 100%;   /* or same as your other images */
+    height: auto;
+  }
+}
 
 @media (max-width: 430px) and (max-height: 844px) {
   /* Narrow the overall strip so background shows both sides */
@@ -347,12 +351,12 @@ footer{ padding:18px 10px; color:var(--muted); text-align:center; font-size:14px
 
   /* Title smaller but glow intact */
   .title {
-    font-size: 34px; /* reduced from 64px on desktop to be more compact */
+    font-size: 30px; /* reduced from 64px on desktop to be more compact */
     text-align: center;
     margin: 12px 0;
   }
 
-  .subtitle { font-size: 12px; }
+  .subtitle { font-size: 9px; }
 
   /* Subheadings */
   .common-heading, .about h2, .video-section .video-title, .wall-title {
@@ -363,23 +367,19 @@ footer{ padding:18px 10px; color:var(--muted); text-align:center; font-size:14px
 
   /* Photo wrap smaller */
   .photo-wrap {
-    max-width: 92%;
-    margin: 12px auto;
-    justify-content:center;
-  }
-  /* Make hero photo same width as gallery images on phone */
-  .photo-wrap img#heroPhoto {
-    width: 100%;
     max-width: 100%;
-    height: auto;
+    margin: 12px auto;
+  }
+  .photo-wrap img {
+    max-height: 180px;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 20px;
   }
 
   /* Force gallery to a single column (one picture per scroll) */
   .wall-art {
     grid-template-columns: 1fr !important;
-    gap: 14px;
+    gap: 18px;
     margin-top: 12px;
   }
 
@@ -391,8 +391,6 @@ footer{ padding:18px 10px; color:var(--muted); text-align:center; font-size:14px
   .art-tile img {
     border-radius: 12px;
     max-height: 380px;
-    width: 100%;
-    object-fit: cover;
   }
 
   /* Video wrapper much smaller so background remains visible */
@@ -404,54 +402,40 @@ footer{ padding:18px 10px; color:var(--muted); text-align:center; font-size:14px
     box-shadow: 0 8px 26px rgba(0,0,0,0.08);
   }
   .play-btn {
-    width: 56px;
-    height: 56px;
+    width: 64px;
+    height: 64px;
     padding: 8px;
   }
 
-  /* ENDING adjustments: make the ending image match gallery width */
+  /* Ending section smaller and centered */
+  .ending {
+    margin: 22px 8px;
+    padding: 14px 12px;
+  }
+  .ending .closing-text {
+    font-size: 9px;
+    font-weight: 300;
+    letter-spacing: 0.1px;
+    max-width: 320px;
+  }
   .ending .ending-image {
-    max-width: 92%;
-    width: 92%;
-    margin: 10px auto;
+    max-width: 380px;
+    width: 100%;
   }
 
-  /* Controls reposition & smaller */
-  .controls { right: 10px; bottom: 10px; flex-direction: column; gap:8px }
-  .btn { padding: 8px 10px; font-size: 13px; border-radius: 10px; }
-  /* Specifically shrink the toggle and ambience wording for small screens */
-  #toggleMusic span#musicLabel { display:none; } /* show only icon/compact */
-  #toggleMode span#themeLabel { display:none; }
-  .theme-indicator { width:28px; height:28px; font-size:15px; }
-  .wave { transform: scale(0.9); }
+  /* Controls reposition */
+  .controls { right: 10px; bottom: 10px; }
 
   /* Cursor hide on touch devices so it doesn't block view */
   .cursor { display:none; }
 
   /* Make interactive elements comfortable for touch */
-  .btn { padding: 10px 12px; font-size: 13px; border-radius: 12px; }
+  .btn { padding: 12px 14px; font-size: 14px; border-radius: 12px; }
 
   /* Slightly dim images to emphasize background */
   .art-tile img, .photo-wrap img {
     filter: contrast(0.98) saturate(0.98);
   }
-
-  /* Paragraph font size smaller for phone for that exact description */
-  .about p.desc {
-    font-size: 13px; /* slightly smaller for phone readability */
-    line-height: 1.6;
-  }
-
-  /* Make preloader strawberry smaller */
-  #preloader .loader-icon { width:48px; margin-bottom:8px; }
-
-  /* Reveal-on-hover/drag: initial subtle opacity to main-inner and reveal elements */
-  .main-inner { opacity: 0.6; transition: opacity 600ms var(--ease) }
-  .reveal { opacity: 0; transform: translateY(12px) scale(.998); transition: opacity 900ms var(--ease), transform 900ms var(--ease) }
-  .reveal.in { opacity:1; transform: translateY(0) scale(1); transition-duration: 700ms; }
-
-  /* Make titles, headings slightly smaller overall */
-  .common-heading, .about h2, .video-section .video-title, .wall-title { font-size: 15px; }
 }
 
 /* Extra careful matching for exact iPhone 12 resolution if needed */
@@ -477,6 +461,12 @@ footer{ padding:18px 10px; color:var(--muted); text-align:center; font-size:14px
 /* helpers */
 .tr { transition: all .28s ease; }
 .sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(1px,1px,1px,1px); white-space:nowrap; }
+
+/* long-form notes:
+   - This CSS is intentionally verbose and contains helpful utility classes for
+     possible future refinements. The critical mobile changes are above in the
+     iPhone-specific media query.
+*/
 
 /* End of CSS block */
   </style>
@@ -518,7 +508,6 @@ footer{ padding:18px 10px; color:var(--muted); text-align:center; font-size:14px
             <p class="desc">Hamna is an energy. The sweetest, kindest and the most beautiful soul someone can ever meet. Being around her feels like cozy laughter, warm chai on a rainy day, and endless good vibes all at once. She’s just that kind of person who makes the world softer and happier. 🌸✨</p>
 
             <div class="photo-wrap" id="photoWrap" style="max-width:720px;margin-bottom:22px">
-              <!-- heroPhoto has id so we can target it on phone and make it same width as gallery -->
               <img src="Hamna%201.jpg" alt="Hamna portrait" id="heroPhoto" />
             </div>
 
@@ -620,7 +609,6 @@ footer{ padding:18px 10px; color:var(--muted); text-align:center; font-size:14px
    - lightbox
    - ambience audio
    - video poster injection & play with fade overlay
-   - mobile "slow reveal" on pointermove/touchmove
    ========================================================================= */
 
 /* Utilities */
@@ -633,11 +621,10 @@ const clamp = (v,a,b) => Math.max(a, Math.min(b, v));
   const pre = document.getElementById('preloader');
   if(!pre) return;
   window.addEventListener('DOMContentLoaded', () => {
-    // keep it a little longer for effect
     setTimeout(()=> {
       pre.classList.add('hidden');
       setTimeout(()=> { pre.style.display = 'none'; }, 420);
-    }, 900); // reduced from 6000 so mobile users see quick load but still see little animation
+    }, 6000);
   });
 })();
 
